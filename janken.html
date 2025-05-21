@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけん</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet" />
+  <link rel="stylesheet" href="css/janken.css">
+</head>
+
+<body>
+  <main>
+    
+    <section>
+    
+    </section>
+
+
+    <section">
+      <p >コンピュータの手は？？</p>
+    </section>
+
+    <section id="pc" class="computer-hand">
+      <p></p>
+    </section>
+
+      <section  >
+        <p>コンピューター: <span id="computer-score">0</span>勝</p>
+      </section>
+
+    <section>
+     
+    </section>
+
+  </main>
+
+  <div class="main2">
+  <main >
+
+  
+    <section>
+      <h1>じゃんけん</h1>
+    </section>
+  
+  
+    <section id="pc">
+      <p class="pc1">勝敗は？？</p>
+    </section>
+  
+    <section id="result" class="result-area">
+      <p></p>
+    </section>
+  
+    <section >
+      <p><button id="reset-btn">リセット</button></p>
+    </section>
+  
+    <section>
+      <button id="gu_btn">✊</button>
+      <button id="cho_btn">✌️</button>
+      <button id="par_btn">✋</button>
+    </section>
+  
+  </main>
+</div>
+<main >
+
+
+  <main>
+  
+    <section>
+  
+    </section>
+  
+  
+    <section">
+      <p>自分の手は？？</p>
+      </section>
+  
+        <section id="result3" class="player-hand">
+        <p></p>
+      </section>
+  
+      <section>
+        <p>あなた: <span id="player-score">0</span>勝</p>
+      </section>
+  
+      <section>
+  
+      </section>
+  
+  </main>
+  
+  <div class="main2">
+    <main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+      let playerScore = 0;
+        let computerScore = 0;
+
+        function resetAnimations() {
+            $("#result").removeClass("win-reaction lose-reaction draw-reaction");
+            // アニメーションをリセットするためのトリック
+           
+        }
+
+                  // リセットボタン
+                    $("#reset-btn").on("click", function () {
+                      // スコアをリセット
+                      playerScore = 0;
+                      computerScore = 0;
+                      $("#player-score").text("0");
+                      $("#computer-score").text("0");
+
+                      // 表示をリセット
+                      $("#result3").text("-");
+                      $("#pc").text("-");
+                      $("#result").text("じゃんけんぽん！");
+                      resetAnimations();
+                    });
+
+
+
+         //  $("#button1").on('click', function () {
+
+           //  const randomNumber2 = 0
+             //console.log(randomNumber2)
+             //alert("randomNumber2");  
+              
+             //const max = 2;
+             //const min = 0;
+
+             //const randomNumber3 = Math.floor(Math.random() * (max - min + 1) + min);
+             //console.log(randomNumber2);
+              //console.log(randomNumber3);
+
+
+
+            // if (randomNumber3 === 0) {
+               //.textを.htmlに置き換えることができる
+  //             $("#result2").text("ぐー")
+//
+    //         } else if (randomNumber3 === 1) {
+//
+  //             $("#result2").text("ちょき")
+//
+  //           }
+    //         else if (randomNumber3 === 2) {
+//
+  //             $("#result2").text("ぱー")
+
+    //         }
+      //        else if (randomNumber2) {
+//
+  //             $("#result3").text("ぱー")
+//
+  //           }
+
+    //         else if (randomNumber3 === randomNumber2) {
+      //         //.textを.htmlに置き換えることができる
+        //       $("#result").text("あいこです")
+
+       
+          //   }
+            // else if (randomNumber3 === 2 && randomNumber2 === 0) {
+
+              // $("#result").text("勝ち")
+
+            // }/
+
+            // else {
+             //  $("result").text("負け")
+             //}
+
+
+
+
+               //    });
+        
+              
+        
+    $("#gu_btn").on("click", function () {
+      var humanGu = 1;
+      var comp = Math.floor(Math.random() * 3 + 1);
+       // アニメーションをリセット
+      resetAnimations();
+      if (comp == 1) {
+        $("#pc").text("相手の手：✊");
+         $("#pc").css({ 'font-size': '60px', });
+      
+        $("#pc2").css({ 'font-size': '200px', });
+
+        $("#result").text("あいこ");
+      
+        $("#result").addClass('draw-reaction');
+        $("#result3").text("自分の手：✊");  
+        
+      } else if (comp == 2) {
+        $("#pc").text("相手の手：✌️");
+        $("#pc").css({ 'font-size': '60px', });
+ 
+        $("#pc2").css({ 'font-size': '200px', });
+        playerScore++;  // プレイヤーの勝ち
+        $("#player-score").text(playerScore);
+        $("#result").text("勝ち");
+     
+        $("#result").addClass(`win-reaction`);
+        $("#result3").text("自分の手：✊");
+      } else if (comp == 3) {
+        $("#pc").text("相手の手：✋");
+        $("#pc").css({ 'font-size': '60px', });
+        computerScore++;  // コンピューターの勝ち
+        $("#computer-score").text(computerScore); 
+
+        $("#pc2").css({ 'font-size': '200px', });
+        $("#result").text("負け");
+     
+        $("#result").addClass("lose-reaction");
+        $("#result3").text("自分の手：✊");
+    
+      }
+    });
+
+
+
+    $("#cho_btn").on("click", function () {
+      var cho = 2;
+      var comp = Math.floor(Math.random() * 3 + 1);
+       // アニメーションをリセット
+      resetAnimations();
+      
+      if (comp == 1) {
+        $("#pc").text("相手の手：✊");
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("負け");
+        computerScore++;  // コンピューターの勝ち
+        $("#computer-score").text(computerScore); 
+      
+        $("#result").addClass("lose-reaction"); 
+        $("#result3").text("自分の手：✌️");
+        computerScore++;
+      } else if (comp == 2) {
+        $("#pc").text("相手の手：✌️");
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("あいこ");
+    
+        $("#result").addClass('draw-reaction');
+        $("#result3").text("自分の手：✌️");
+        
+      } else if (comp == 3) {
+        $("#pc").text("相手の手：✋");
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("勝ち");
+     
+        $("#result").addClass(`win-reaction`);
+        $("#result3").text("自分の手：✌️");
+        playerScore++;  // プレイヤーの勝ち
+        $("#player-score").text(playerScore); 
+      }
+    });
+
+
+    
+    $("#par_btn").on("click", function () {
+      var humaPar = 3;
+      var comp = Math.floor(Math.random() * 3 + 1);
+       // アニメーションをリセット
+      resetAnimations();
+      
+      if (comp == 1) {
+        $("#pc").text("相手の手：✊");
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("勝ち");
+      
+        $("#result").addClass(`win-reaction`);
+         $("#result3").text("自分の手：✋");
+         $('#result')[0].reset();
+         playerScore++;  // プレイヤーの勝ち
+        $("#player-score").text(playerScore);
+      } else if (comp == 2) {
+        $("#pc").text("相手の手：✌️");
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("負け");
+     
+        $("#result").addClass("lose-reaction");
+        $("#result3").text("自分の手：✋");
+        $('#result')[0].reset();
+        computerScore++;  // コンピューターの勝ち
+        $("#computer-score").text(computerScore); 
+      } else if (comp == 3) {
+        $("#pc").text("相手の手：✋")
+        $("#pc").css({ 'font-sise': '60px', });
+        $("#result").text("あいこ");
+     
+        $("#result").addClass('draw-reaction');
+        $("#result3").text("自分の手：✋");
+       
+      }
+    });
+
+  </script>
+
+
+    
+</body>
+
+</html>
