@@ -35,9 +35,10 @@ main {
     border-radius: 20px;
     /*影を作る*/
     box-shadow: 0 20px 20px  rgba(0, 0, 0, 0.9);
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     position: relative;
+    height: 100vh;
 }
 
 section {
